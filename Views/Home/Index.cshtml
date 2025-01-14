@@ -1,0 +1,176 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            margin: 0;
+            height: 100%;
+        }
+
+        .navbar {
+            background-color: #212529;
+        }
+
+        .navbar-brand, .navbar-nav a {
+            color: #fff !important;
+        }
+
+            .navbar-nav a:hover {
+                color: #FF6347 !important;
+            }
+
+        .hero-section {
+            background-image: url('https://via.placeholder.com/1600x900.png?text=Restaurante+Delícia');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            text-align: center;
+            position: relative;
+        }
+
+            .hero-section h1 {
+                font-size: 4rem;
+                font-weight: 600;
+                margin-bottom: 20px;
+                color: black;
+            }
+
+            .hero-section p {
+                color: black;
+                font-size: 1.5rem;
+                margin-bottom: 30px;
+            }
+
+        .btn-primary {
+            background-color: #FF6347;
+            border-color: #FF6347;
+            padding: 12px 24px;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            font-weight: 500;
+            border-radius: 50px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+            .btn-primary:hover {
+                background-color: #e5533f;
+                border-color: #e5533f;
+                transform: translateY(-5px);
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            }
+
+            .btn-primary:focus, .btn-primary:active {
+                background-color: #FF6347;
+                border-color: #FF6347;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+
+
+
+        /*  .hero-section .btn-primary {
+                        background-color: #FF6347;
+                        border-color: #FF6347;
+                        padding: 12px 24px;
+                        font-size: 1.2rem;
+                        text-transform: uppercase;
+                        font-weight: 500;
+                        border-radius: 50px;
+                        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                    }
+
+                        .hero-section .btn-primary:hover {
+                            background-color: #e5533f;
+                            border-color: #e5533f;
+                        }
+         */
+
+
+        .footer {
+            background-color: #212529;
+            color: #fff;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+            .footer p {
+                margin: 0;
+                font-size: 1rem;
+            }
+
+            .footer .social-icons a {
+                color: #fff;
+                margin: 0 15px;
+                font-size: 1.5rem;
+                text-decoration: none;
+            }
+
+                .footer .social-icons a:hover {
+                    color: #FF6347;
+                }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <a class="navbar-brand" asp-action="Index" asp-controller="Home">Restaurante</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-action="Index" asp-controller="Prato">Menu</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Sobre</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contato</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="hero-section">
+        <div>
+            <h1>Bem-vindo ao Restaurante!</h1>
+            <p>Sabores inesquecíveis esperam por você. Explore o nosso cardápio e viva uma experiência gastronômica única.</p>
+            <a class="btn btn-primary" asp-action="Index" asp-controller="Prato">Explore nosso Menu</a>
+        </div>
+    </div>
+
+    @*     <footer class="footer">
+        <p>&copy; 2025 Restaurante. Todos os direitos reservados.</p>
+        <div class="social-icons">
+            <a href="#" class="fab fa-facebook-f"></a>
+            <a href="#" class="fab fa-instagram"></a>
+            <a href="#" class="fab fa-twitter"></a>
+        </div>
+    </footer> *@
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

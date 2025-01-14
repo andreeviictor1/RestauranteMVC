@@ -1,0 +1,272 @@
+﻿@model List<Prato>
+@{
+    ViewData["Title"] = "Cardápio Principal";
+}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            margin: 0;
+            height: 100%;
+        }
+
+        .navbar {
+            background-color: #212529;
+        }
+
+        .navbar-brand, .navbar-nav a {
+            color: #fff !important;
+        }
+
+            .navbar-nav a:hover {
+                color: #FF6347 !important;
+            }
+
+        .hero-section {
+            background-image: url('https://via.placeholder.com/1600x900.png?text=Restaurante+Delícia');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #000;
+            text-align: center;
+            position: relative;
+        }
+
+            .hero-section h1 {
+                font-size: 4rem;
+                font-weight: 600;
+                margin-bottom: 20px;
+                color: #000;
+            }
+
+            .hero-section p {
+                font-size: 1.5rem;
+                margin-bottom: 30px;
+                color: #000;
+            }
+
+            .hero-section .btn-primary {
+                background-color: #FF6347;
+                border-color: #FF6347;
+                padding: 12px 24px;
+                font-size: 1.2rem;
+                text-transform: uppercase;
+                font-weight: 500;
+                border-radius: 50px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+
+                .hero-section .btn-primary:hover {
+                    background-color: #e5533f;
+                    border-color: #e5533f;
+                }
+
+        .footer {
+            background-color: #212529;
+            color: #fff;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+            .footer p {
+                margin: 0;
+                font-size: 1rem;
+            }
+
+            .footer .social-icons a {
+                color: #fff;
+                margin: 0 15px;
+                font-size: 1.5rem;
+                text-decoration: none;
+            }
+
+                .footer .social-icons a:hover {
+                    color: #FF6347;
+                }
+
+        .table {
+            margin-top: 30px;
+            border-radius: 8px;
+            background-color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+            .table th, .table td {
+                text-align: center;
+                vertical-align: middle;
+            }
+
+            .table thead {
+                background-color: #212529;
+                color: #fff;
+            }
+
+            .table tbody tr:hover {
+                background-color: #FF6347;
+                color: #fff;
+            }
+
+        .btn-primary, .btn-danger, .btn-warning {
+            font-size: 1rem;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-transform: uppercase;
+        }
+
+        .btn-primary {
+            background-color: #FF6347;
+            border-color: #FF6347;
+        }
+
+            .btn-primary:hover {
+                background-color: #e5533f;
+                border-color: #e5533f;
+            }
+
+        .btn-danger {
+            background-color: #dc3545;
+            border-color: #dc3545;
+        }
+
+            .btn-danger:hover {
+                background-color: #c82333;
+                border-color: #c82333;
+            }
+
+        .btn-warning {
+            background-color: #ffc107;
+            border-color: #ffc107;
+        }
+
+            .btn-warning:hover {
+                background-color: #e0a800;
+                border-color: #e0a800;
+            }
+
+        .d-grid {
+            margin-bottom: 20px;
+        }
+
+        .footer {
+            background-color: #212529;
+            color: #fff;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+            .footer p {
+                margin: 0;
+                font-size: 1rem;
+            }
+
+            .footer .social-icons a {
+                color: #fff;
+                margin: 0 15px;
+                font-size: 1.5rem;
+                text-decoration: none;
+            }
+
+                .footer .social-icons a:hover {
+                    color: #FF6347;
+                }
+
+
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <a class="navbar-brand" asp-action="Index" asp-controller="Home">Restaurante</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" asp-action="Index" asp-controller="Home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-action="Index" asp-controller="Prato">Menu</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Sobre</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contato</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-5 pt-5">
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+            <a class="btn btn-primary" role="button" asp-controller="Prato" asp-action="Create">Adicionar Prato</a>
+        </div>
+        <br />
+
+        <div class="text-center">
+            <h1 class="display-4">Itens do Cardápio</h1>
+
+            <table class="table table-bordered table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Descrição</th>
+                        <th scope="col">Preço</th>
+                        <th scope="col">Categoria</th>
+                        <th scope="col">Bebida Inclusa</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null && Model.Any())
+                    {
+                        foreach (Prato prato in Model)
+                        {
+                            <tr>
+                                <th scope="row">@prato.Id</th>
+                                <td>@prato.Name</td>
+                                <td>@prato.Description</td>
+                                <td>R$ @prato.Preco</td>
+                                <td>@prato.CategoriaString</td>
+                                <td>@(prato.Bebida ? "Sim" : "Não")</td>
+                                <td>
+                                    <a role="button" class="btn btn-warning" asp-route-id="@prato.Id" asp-action="Edit" asp-controller="Prato">Editar</a>
+                                    <a role="button" class="btn btn-danger" asp-route-id="@prato.Id" asp-action="Delete" asp-controller="Prato">Apagar</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+@*     <footer class="footer">
+        <p>&copy; 2025 Restaurante. Todos os direitos reservados.</p>
+        <div class="social-icons">
+            <a href="#" class="fab fa-facebook-f"></a>
+            <a href="#" class="fab fa-instagram"></a>
+            <a href="#" class="fab fa-twitter"></a>
+        </div>
+    </footer> *@
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+﻿// Passando a model para uma view
+@model Prato
+@{
+    ViewData["Title"] = "Criar Prato";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Cadastrar Prato</h1>
+</div>
+
+<form asp-action="Post" asp-controller="Prato" method="post">
+
+    <input type="hidden" asp-for="Id" />
+
+    <div class="form-group">
+        <label for="nome">Nome</label>
+        <input type="text" asp-for="Name" class="form-control" placeholder="Digite o nome do prato">
+    </div>
+
+    <div class="form-group">
+        <label for="nome">Descricao</label>
+        <input type="text" asp-for="Description" class="form-control" placeholder="Digite os ingredientes ou informacoes">
+    </div>
+
+    <div class="form-group">
+        <label for="nome">Preco</label>
+        <input type="number" step="0.01" asp-for="Preco" class="form-control" placeholder="Digite o valor a ser cobrado">
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CategoriaString" class="control-label">Categoria</label>
+        <select asp-for="CategoriaString" class="form-select" aria-label="Default select example">
+            <option value="" selected>Selecione a categoria do prato</option>
+            <option value="0">Carnes</option>
+            <option value="1">Aves</option>
+            <option value="2">Vegetariano</option>
+        </select>
+        <span asp-validation-for="CategoriaString" class="text-danger"></span>
+    </div>
+
+    <div class="form-check">
+        <input class="form-check-input" asp-for="Bebida" type="checkbox" id="flexCheckDefault">
+        <label class="form-check-label" asp-for="Bebida" for="flexCheckDefault">
+            Bebida inclusa?
+        </label>
+    </div>
+
+
+
+    <button type="submit" class="btn btn-primary" >Adicionar</button>
+    <a class="btn btn-secondary" asp-controller="Prato" asp-action="Index" role="button">Voltar</a>
+</form>

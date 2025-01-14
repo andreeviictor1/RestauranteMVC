@@ -1,0 +1,117 @@
+﻿@model Prato
+@{
+    ViewData["Title"] = "Editar Prato";
+}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            margin: 0;
+            height: 100%;
+        }
+
+        .navbar {
+            background-color: #212529;
+        }
+
+        .navbar-brand, .navbar-nav a {
+            color: #fff !important;
+        }
+
+            .navbar-nav a:hover {
+                color: #FF6347 !important;
+            }
+
+        .container {
+            margin-top: 60px;
+        }
+
+        .footer {
+            background-color: #212529;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+            .footer a {
+                color: #FF6347;
+                text-decoration: none;
+            }
+
+                .footer a:hover {
+                    color: #e5533f;
+                    text-decoration: underline;
+                }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <a class="navbar-brand" asp-action="Index" asp-controller="Home">Restaurante</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" asp-action="Index" asp-controller="Home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-action="Index" asp-controller="Prato">Menu</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Sobre</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contato</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1 class="display-4">Editar Prato</h1>
+        <form asp-action="Edit" method="post">
+            <div class="form-group">
+                <label for="Name">Nome</label>
+                <input type="text" class="form-control" id="Name" name="Name" value="@Model.Name" required>
+            </div>
+            <div class="form-group">
+                <label for="Description">Descrição</label>
+                <input type="text" class="form-control" id="Description" name="Description" value="@Model.Description" required>
+            </div>
+            <div class="form-group">
+                <label for="Preco">Preço</label>
+                <input type="number" class="form-control" id="Preco" name="Preco" value="@Model.Preco" required>
+            </div>
+            <div class="form-group">
+                <label for="CategoriaString">Categoria</label>
+                <input type="text" class="form-control" id="CategoriaString" name="CategoriaString" value="@Model.CategoriaString" required>
+            </div>
+            <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="Bebida" name="Bebida" @(Model.Bebida ? "checked" : "")>
+                <label class="form-check-label" for="Bebida">Bebida Inclusa</label>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+        </form>
+
+        <a href="@Url.Action("Index", "Prato")" class="btn btn-secondary mt-3">Voltar para o Cardápio</a>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
