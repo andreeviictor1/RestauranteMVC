@@ -3,6 +3,12 @@
     ViewData["Title"] = "Cardápio Principal";
 }
 
+@{
+    Layout = "_Layout";
+}
+
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -13,6 +19,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
+
         body {
             font-family: 'Poppins', sans-serif;
             background-color: #f8f9fa;
@@ -21,17 +28,6 @@
             height: 100%;
         }
 
-        .navbar {
-            background-color: #212529;
-        }
-
-        .navbar-brand, .navbar-nav a {
-            color: #fff !important;
-        }
-
-            .navbar-nav a:hover {
-                color: #FF6347 !important;
-            }
 
         .hero-section {
             background-image: url('https://via.placeholder.com/1600x900.png?text=Restaurante+Delícia');
@@ -185,32 +181,143 @@
                 }
 
 
+        .alert {
+            position: relative;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid transparent;
+            border-radius: 0.25rem;
+        }
+
+        .alert-success {
+            color: #0f5132;
+            background-color: #d1e7dd;
+            border-color: #badbcc;
+        }
+
+        .alert-danger {
+            color: #842029;
+            background-color: #f8d7da;
+            border-color: #f5c2c7;
+        }
+
+        .close-alert {
+            position: absolute;
+            right: 0.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 0.25rem 0.5rem;
+            font-size: 0.875rem;
+            line-height: 1;
+            border-radius: 0.2rem;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: opacity 0.15s ease-in-out;
+        }
+
+            .close-alert:hover {
+                opacity: 0.8;
+            }
+
+        .btn-success.close-alert {
+            background-color: #198754;
+            color: white;
+        }
+
+        .btn-danger.close-alert {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        /* Animation for alerts */
+        .alert {
+            animation: slideIn 0.3s ease-out;
+        }
+
+
+         .navbar {
+            background-color: white;
+            box-shadow: var(--box-shadow);
+            padding: 1rem 2rem;
+        }
+
+        .navbar-brand {
+            color: var(--primary-color) !important;
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .nav-link {
+            color: var(--text-color) !important;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            margin: 0 0.5rem;
+        }
+
+            .nav-link:hover {
+                color: var(--accent-color) !important;
+            }
+
+
     </style>
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-        <a class="navbar-brand" asp-action="Index" asp-controller="Home">Restaurante</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <a class="navbar-brand" asp-action="Index" asp-controller="Home">
+            <i class="fas fa-utensils mr-2"></i>Restaurante
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" asp-action="Index" asp-controller="Home">Home</a>
+                <li class="nav-item">
+                    <a class="nav-link" asp-action="Index" asp-controller="Home">
+                        <i class="fas fa-home mr-1"></i>Home
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" asp-action="Index" asp-controller="Prato">Menu</a>
+                    <a class="nav-link" asp-action="Index" asp-controller="Prato">
+                        <i class="fas fa-book-open mr-1"></i>Menu
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Sobre</a>
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-info-circle mr-1"></i>Sobre
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Contato</a>
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-envelope mr-1"></i>Contato
+                    </a>
                 </li>
             </ul>
         </div>
     </nav>
+
+    <br />
+    <br />
+
+    @if(TempData["MensagemSucesso"] != null )
+    {
+        <div class="alert alert-success" role="alert">
+            <button type="button" class="btn btn-success btn-sm close-alert" arial-label="Close">X</button>
+            @TempData["MensagemSucesso"]
+        </div>
+    }
+
+    @if (TempData["MensagemErro"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
+            @TempData["MensagemErro"]
+        </div>
+    }
+
+    <br />
+
 
     <div class="container mt-5 pt-5">
         <div class="d-grid gap-2 d-md-flex justify-content-md-start">
@@ -257,14 +364,6 @@
         </div>
     </div>
 
-@*     <footer class="footer">
-        <p>&copy; 2025 Restaurante. Todos os direitos reservados.</p>
-        <div class="social-icons">
-            <a href="#" class="fab fa-facebook-f"></a>
-            <a href="#" class="fab fa-instagram"></a>
-            <a href="#" class="fab fa-twitter"></a>
-        </div>
-    </footer> *@
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

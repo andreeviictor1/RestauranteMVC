@@ -1,8 +1,14 @@
-﻿// Passando a model para uma view
+﻿
 @model Prato
 @{
     ViewData["Title"] = "Criar Prato";
 }
+
+@{
+    Layout = "_Layout";
+}
+
+
 
 <div class="text-center">
     <h1 class="display-4">Cadastrar Prato</h1>
@@ -47,6 +53,6 @@
 
 
 
-    <button type="submit" class="btn btn-primary" >Adicionar</button>
+    <button type="submit" class="btn btn-primary">Adicionar</button>
     <a class="btn btn-secondary" asp-controller="Prato" asp-action="Index" role="button">Voltar</a>
 </form>

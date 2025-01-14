@@ -2,6 +2,9 @@
 @{
     ViewData["Title"] = "Editar Prato";
 }
+@{
+    Layout = "_Layout";
+}
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -9,107 +12,300 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewData["Title"]</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --bg-color: #f8f9fa;
+            --text-color: #2c3e50;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #f8f9fa;
-            color: #333;
-            margin: 0;
-            height: 100%;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding-top: 76px;
         }
 
         .navbar {
-            background-color: #212529;
+            background-color: white;
+            box-shadow: var(--box-shadow);
+            padding: 1rem 2rem;
         }
 
-        .navbar-brand, .navbar-nav a {
-            color: #fff !important;
+        .navbar-brand {
+            color: var(--primary-color) !important;
+            font-weight: 700;
+            font-size: 1.5rem;
         }
 
-            .navbar-nav a:hover {
-                color: #FF6347 !important;
+        .nav-link {
+            color: var(--text-color) !important;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            margin: 0 0.5rem;
+        }
+
+            .nav-link:hover {
+                color: var(--accent-color) !important;
             }
 
-        .container {
-            margin-top: 60px;
+        .main-content {
+            flex: 1;
+            padding: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .form-container {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        h1 {
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+            border-bottom: 3px solid var(--accent-color);
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+            .form-group label {
+                font-weight: 600;
+                color: var(--primary-color);
+                margin-bottom: 0.5rem;
+            }
+
+        .form-control {
+            border-radius: var(--border-radius);
+            border: 2px solid #e9ecef;
+            padding: 0.75rem;
+            transition: all 0.3s ease;
+        }
+
+            .form-control:focus {
+                border-color: var(--accent-color);
+                box-shadow: 0 0 0 0.2rem rgba(231, 76, 60, 0.25);
+            }
+
+        .price-input-group {
+            position: relative;
+        }
+
+            .price-input-group::before {
+                content: "R$";
+                position: absolute;
+                left: 1rem;
+                top: 50%;
+                transform: translateY(-50%);
+                color: #6c757d;
+                z-index: 10;
+            }
+
+            .price-input-group input {
+                padding-left: 3rem;
+            }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            border-radius: var(--border-radius);
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+        }
+
+            .btn-primary:hover {
+                background-color: #c0392b;
+                border-color: #c0392b;
+                transform: translateY(-2px);
+            }
+
+        .btn-secondary {
+            background-color: #95a5a6;
+            border-color: #95a5a6;
+        }
+
+            .btn-secondary:hover {
+                background-color: #7f8c8d;
+                border-color: #7f8c8d;
+                transform: translateY(-2px);
+            }
+
+        .custom-select {
+            border-radius: var(--border-radius);
+            border: 2px solid #e9ecef;
+            padding: 0.75rem 1rem; /* Ajuste no padding para manter o alinhamento */
+            transition: all 0.3s ease;
+            background-color: white;
+            color: #6c757d;
+            font-size: 1rem;
+            box-shadow: 0 0 0 0.2rem rgba(231, 76, 60, 0.25);
+            -webkit-appearance: none; /* Remove o estilo padrão do select em alguns navegadores */
+            -moz-appearance: none;
+            appearance: none;
+            height: auto; /* Garantir que o select tenha a mesma altura que os inputs */
+            line-height: 1.5; /* Alinha o texto verticalmente */
+        }
+
+            .custom-select:focus {
+                border-color: var(--accent-color);
+                box-shadow: 0 0 0 0.2rem rgba(231, 76, 60, 0.25);
+                outline: none;
+            }
+
+            .custom-select option {
+                background-color: white;
+                color: #6c757d;
+                padding: 10px; /* Ajusta o espaçamento interno das opções */
+            }
+
+
+
+        .form-check {
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: var(--border-radius);
+            margin-top: 1rem;
+        }
+
+        .form-check-label {
+            font-weight: 500;
+            color: var(--primary-color);
         }
 
         .footer {
-            background-color: #212529;
-            color: #fff;
-            padding: 10px 0;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 40px 0;
             text-align: center;
-            font-size: 0.9rem;
+            margin-top: 2rem;
         }
 
-            .footer a {
-                color: #FF6347;
-                text-decoration: none;
+            .footer p {
+                margin: 0;
+                font-size: 1rem;
             }
-
-                .footer a:hover {
-                    color: #e5533f;
-                    text-decoration: underline;
-                }
     </style>
 </head>
 <body>
-
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-        <a class="navbar-brand" asp-action="Index" asp-controller="Home">Restaurante</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <a class="navbar-brand" asp-action="Index" asp-controller="Home">
+            <i class="fas fa-utensils mr-2"></i>Restaurante
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" asp-action="Index" asp-controller="Home">Home</a>
+                    <a class="nav-link" asp-action="Index" asp-controller="Home">
+                        <i class="fas fa-home mr-1"></i>Home
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" asp-action="Index" asp-controller="Prato">Menu</a>
+                    <a class="nav-link" asp-action="Index" asp-controller="Prato">
+                        <i class="fas fa-book-open mr-1"></i>Menu
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Sobre</a>
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-info-circle mr-1"></i>Sobre
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Contato</a>
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-envelope mr-1"></i>Contato
+                    </a>
                 </li>
             </ul>
         </div>
     </nav>
 
-    <div class="container">
-        <h1 class="display-4">Editar Prato</h1>
-        <form asp-action="Edit" method="post">
-            <div class="form-group">
-                <label for="Name">Nome</label>
-                <input type="text" class="form-control" id="Name" name="Name" value="@Model.Name" required>
-            </div>
-            <div class="form-group">
-                <label for="Description">Descrição</label>
-                <input type="text" class="form-control" id="Description" name="Description" value="@Model.Description" required>
-            </div>
-            <div class="form-group">
-                <label for="Preco">Preço</label>
-                <input type="number" class="form-control" id="Preco" name="Preco" value="@Model.Preco" required>
-            </div>
-            <div class="form-group">
-                <label for="CategoriaString">Categoria</label>
-                <input type="text" class="form-control" id="CategoriaString" name="CategoriaString" value="@Model.CategoriaString" required>
-            </div>
-            <div class="form-group form-check">
-                <input type="checkbox" class="form-check-input" id="Bebida" name="Bebida" @(Model.Bebida ? "checked" : "")>
-                <label class="form-check-label" for="Bebida">Bebida Inclusa</label>
-            </div>
+    <div class="main-content">
+        <div class="form-container">
+            <h1>
+                <i class="fas fa-edit mr-2"></i>Editar Prato
+            </h1>
 
-            <button type="submit" class="btn btn-primary">Salvar Alterações</button>
-        </form>
+            <form asp-action="Edit" method="post">
+                <div class="form-group">
+                    <label for="Name">
+                        <i class="fas fa-tag mr-2"></i>Nome do Prato
+                    </label>
+                    <input type="text" class="form-control" id="Name" name="Name" value="@Model.Name" required
+                           placeholder="Digite o nome do prato">
+                </div>
 
-        <a href="@Url.Action("Index", "Prato")" class="btn btn-secondary mt-3">Voltar para o Cardápio</a>
+                <div class="form-group">
+                    <label for="Description">
+                        <i class="fas fa-align-left mr-2"></i>Descrição
+                    </label>
+                    <textarea class="form-control" id="Description" name="Description" rows="3" required
+                              placeholder="Descreva os ingredientes e o preparo">@Model.Description</textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="Preco">
+                        <i class="fas fa-dollar-sign mr-2"></i>Preço
+                    </label>
+                    <div class="price-input-group">
+                        <input type="number" class="form-control" id="Preco" name="Preco"
+                               value="@Model.Preco" step="0.01" min="0" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="CategoriaString">Categoria</label>
+                    <select asp-for="CategoriaString" class="custom-select" aria-label="Selecione a categoria do prato">
+                        <option value="" selected>Selecione a categoria do prato</option>
+                        <option value="0">Carnes</option>
+                        <option value="1">Aves</option>
+                        <option value="2">Vegetariano</option>
+                    </select>
+                    <span asp-validation-for="CategoriaString" class="text-danger"></span>
+                </div>
+
+
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="Bebida" name="Bebida" @(Model.Bebida ? "checked" : "")>
+                    <label class="form-check-label" for="Bebida">
+                        <i class="fas fa-glass-cheers mr-2"></i>Bebida Inclusa
+                    </label>
+                </div>
+
+                <div class="d-flex justify-content-between mt-4">
+                    <a href="@Url.Action("Index", "Prato")" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left mr-2"></i>Voltar
+                    </a>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save mr-2"></i>Salvar Alterações
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
+
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

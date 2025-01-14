@@ -1,6 +1,7 @@
 ﻿using CardapioMVC.Models;
 using CardapioMVC.Repository;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace CardapioMVC.Controllers
 {
@@ -48,11 +49,28 @@ namespace CardapioMVC.Controllers
 
 
 
+        //[HttpPost]
+        //public IActionResult Post(Prato prato)
+        //{
+        //    _pratoRepository.AddPrato(prato);
+        //    return RedirectToAction("Index");
+        //}
+
+
 
         [HttpPost]
         public IActionResult Post(Prato prato)
         {
-            _pratoRepository.AddPrato(prato);
+            try
+            {
+                _pratoRepository.AddPrato(prato);
+                TempData["MensagemSucesso"] = "Prato cadastrado com sucesso!";
+            }
+            catch (Exception ex)
+            {
+                TempData["MensagemErro"] = $"Ops, não foi possível cadastrar o prato. Erro: {ex.Message}";
+            }
+
             return RedirectToAction("Index");
         }
 
@@ -60,7 +78,15 @@ namespace CardapioMVC.Controllers
         [HttpPost]
         public IActionResult Edit(Prato prato)
         {
-            _pratoRepository.UpdatePrato(prato);
+            try
+            {
+                _pratoRepository.UpdatePrato(prato);
+                TempData["MensagemSucesso"] = "Prato atualizado com sucesso!";
+            }
+            catch (Exception ex)
+            {
+                TempData["MensagemErro"] = $"Ops, não foi possível atualizar o prato. Erro: {ex.Message}";
+            }
             return RedirectToAction("Index");
         }
 
